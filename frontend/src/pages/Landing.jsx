@@ -42,7 +42,6 @@ export default function Landing() {
             {['home','services','requirements','achievements','announcements','contact'].map(s => (
               <li key={s}><a href={`#${s}`}>{s.charAt(0).toUpperCase()+s.slice(1)}</a></li>
             ))}
-            <li><a href="/admin/login" className="pub-admin-btn"><i className="bi bi-lock"></i> Admin</a></li>
           </ul>
           <button className="pub-toggler" onClick={() => setMobileOpen(o => !o)}>
             <i className={`bi ${mobileOpen ? 'bi-x-lg' : 'bi-list'}`}></i>
@@ -55,9 +54,6 @@ export default function Landing() {
                 {s.charAt(0).toUpperCase()+s.slice(1)}
               </a>
             ))}
-            <a href="/admin/login" style={{color:'var(--primary)',fontWeight:700}}>
-              <i className="bi bi-lock me-1"></i> Admin Login
-            </a>
           </div>
         )}
       </nav>
