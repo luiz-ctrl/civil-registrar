@@ -1,0 +1,57 @@
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.kpi-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+.kpi-label { font-size: 12px; font-weight: 600; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.04em; }
+.kpi-value { font-size: 28px; font-weight: 800; color: #0f172a; }
+.kpi-change { font-size: 12px; margin-top: 4px; display: flex; align-items: center; gap: 2px; }
+.kpi-change.positive { color: #16a34a; }
+.kpi-change.negative { color: #dc2626; }
+.kpi-sub { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+.kpi-bar { height: 5px; background: #e2e8f0; border-radius: 4px; margin-top: 8px; width: 90px; }
+.kpi-bar div { height: 100%; background: #22c55e; border-radius: 4px; }
+.kpi-icon { position: absolute; right: 16px; top: 16px; font-size: 2rem; opacity: 0.15; }
+.text-primary { color: #3b82f6; }
+.text-success  { color: #22c55e; }
+.text-info     { color: #06b6d4; }
+
+.dash-row { display: grid; gap: 16px; }
+.dash-row-2 { grid-template-columns: 1fr 1fr; }
+.dash-row-3 { grid-template-columns: 2fr 1.5fr 1.5fr; }
+
+.dash-section-title {
+  font-size: 13px; font-weight: 700; color: #0f172a;
+  display: flex; align-items: center; gap: 7px; margin-bottom: 14px;
+}
+.dash-section-title i { color: var(--primary); }
+.dash-section-title small { font-weight: 400; color: var(--text-muted); }
+
+.today-total { font-size: 36px; font-weight: 800; color: #0f172a; margin-bottom: 14px; }
+.today-total span { font-size: 14px; font-weight: 400; color: var(--text-muted); }
+.today-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
+.today-stat { border-radius: 10px; padding: 10px; text-align: center; }
+
+.top-residents { list-style: none; padding: 0; margin: 0; }
+.top-residents li {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 0; border-bottom: 1px solid #f1f5f9; font-size: 13px;
+}
+.top-residents li:last-child { border-bottom: none; }
+
+@media (max-width: 1100px) {
+  .kpi-grid { grid-template-columns: repeat(2,1fr); }
+  .dash-row-3 { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 700px) {
+  .kpi-grid { grid-template-columns: 1fr 1fr; }
+  .dash-row-2, .dash-row-3 { grid-template-columns: 1fr; }
+}
