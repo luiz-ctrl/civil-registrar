@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from 'react'
+import { createContext, useContext, useState, useEffect, useRef } from 'react'
 import api from '../utils/api'
 
 const AuthContext = createContext(null)
@@ -6,18 +6,20 @@ const AuthContext = createContext(null)
 export function AuthProvider({ children }) {
   const [user, setUser]       = useState(null)
   const [loading, setLoading] = useState(true)
+  const checked               = useRef(false)
 
   useEffect(() => {
-    // Only check auth if we're on an admin page
-    if (window.location.pathname.startsWith('/admin')) {
-      api.get('/auth/me')
-        .then(r => setUser(r.data))
-        .catch(() => setUser(null))
-        .finally(() => setLoading(false))
-    } else {
-      // Not on admin page, skip auth check
+    if (!window.location.pathname.startsWith('/admin')) {
       setLoading(false)
+      return
     }
+    if (checked.current) return
+    checked.current = true
+
+    api.get('/auth/me')
+      .then(r => setUser(r.data))
+      .catch(() => setUser(null))
+      .finally(() => setLoading(false))
   }, [])
 
   const login = async (username, password) => {
