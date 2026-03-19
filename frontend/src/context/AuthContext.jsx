@@ -8,10 +8,16 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    api.get('/auth/me')
-      .then(r => setUser(r.data))
-      .catch(() => setUser(null))
-      .finally(() => setLoading(false))
+    // Only check auth if we're on an admin page
+    if (window.location.pathname.startsWith('/admin')) {
+      api.get('/auth/me')
+        .then(r => setUser(r.data))
+        .catch(() => setUser(null))
+        .finally(() => setLoading(false))
+    } else {
+      // Not on admin page, skip auth check
+      setLoading(false)
+    }
   }, [])
 
   const login = async (username, password) => {
