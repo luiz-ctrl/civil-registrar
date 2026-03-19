@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: civil-registrar
+    runtime: python
+    rootDir: api
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: FRONTEND_URL
+        value: https://civil-registrar-general-luna.netlify.app
